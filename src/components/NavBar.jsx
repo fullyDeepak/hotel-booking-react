@@ -4,7 +4,7 @@ const NavBar = () => {
   return (
     <>
       <div className='bg-[#003580] h-14 flex justify-center items-center '>
-        <div className='w-[100%] max-w-5xl text-white font-semibold flex justify-between'>
+        <div className='w-[100%] max-w-[1070px] text-white font-semibold flex justify-between'>
           <span className='font-sans text-2xl'>Booking.com</span>
           <div>
             <span className='mr-4 font-sans'>List your property</span>
