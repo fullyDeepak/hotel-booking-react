@@ -9,9 +9,15 @@ import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // css file for date picker
 import 'react-date-range/dist/theme/default.css'; // theme css file for date picker
 import { format } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 
 const Header = (props) => {
   const [checked, setChecked] = useState(false);
+  const [destination, setDestination] = useState('');
+  const navigate = useNavigate();
+  const handleSearch = () => {
+    navigate('/hotels', { state: { destination, date, previewOptions } });
+  };
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -76,23 +82,29 @@ const Header = (props) => {
                   <input
                     className='outline-none pr-2 w-80 rounded h-[53px] placeholder:text-gray-600 focus:placeholder:text-gray-400'
                     placeholder='Where are you going?'
+                    onChange={(e) => setDestination(e.target.value)}
                   />
                 </div>
-                <div
-                  className='flex bg-white w-[100%] border-white border-2 hover:border-[#ff8800] hover:border-2 h-14 rounded-[2px] px-3 cursor-pointer items-center gap-2'
-                  onClick={() => setShowDatePicker(!showDatePicker)}>
-                  <FaRegCalendarAlt className='text-xl text-gray-400' />
-                  <span>{`${format(date[0].startDate, 'EE, MMM dd')} — ${format(
-                    date[0].endDate,
-                    'EE, MMM dd'
-                  )}`}</span>
+                <div className='relative flex bg-white w-[100%] border-white border-2 hover:border-[#ff8800] hover:border-2 h-14 rounded-[2px] cursor-pointer items-center'>
+                  <div
+                    onClick={() => setShowDatePicker(!showDatePicker)}
+                    className='flex items-center w-full h-full gap-2 px-3'>
+                    <FaRegCalendarAlt className='text-xl text-gray-400' />
+                    <span>
+                      {`${format(date[0].startDate, 'EE, MMM dd')} — ${format(
+                        date[0].endDate,
+                        'EE, MMM dd'
+                      )}`}
+                    </span>
+                  </div>
                   {showDatePicker && (
                     <DateRange
-                      editableDateInputs={true}
+                      // editableDateInputs={true}
                       onChange={(item) => setDate([item.selection])}
-                      moveRangeOnFirstSelection={false}
+                      minDate={new Date()}
+                      // moveRangeOnFirstSelection={false}
                       ranges={date}
-                      className='absolute top-16'
+                      className='absolute left-[-6px] bg-white border-2 rounded-bl-lg rounded-br-lg top-[60px]'
                     />
                   )}
                 </div>
@@ -205,7 +217,9 @@ const Header = (props) => {
                     </div>
                   )}
                 </div>
-                <button className='bg-[#0071c2] rounded-[2px] px-8 py-[14px] text-xl text-white hover:bg-[#00487a]'>
+                <button
+                  onClick={handleSearch}
+                  className='bg-[#0071c2] rounded-[2px] px-8 py-[14px] text-xl text-white hover:bg-[#00487a]'>
                   Search
                 </button>
               </div>
