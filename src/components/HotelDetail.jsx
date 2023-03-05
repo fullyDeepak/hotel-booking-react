@@ -15,7 +15,6 @@ import {
 } from 'react-icons/fa';
 import { IoLocationSharp } from 'react-icons/io5';
 import { MdOutlineCleaningServices } from 'react-icons/md';
-import NextPrevButton from './NextPrevButton';
 import Footer from './Footer';
 
 const HotelDetail = () => {

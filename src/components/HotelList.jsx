@@ -43,7 +43,7 @@ const SearchItem = () => {
               includes taxes and fees
             </p>
             <a
-              href='/'
+              href='/hotels/xyz'
               className='px-6 py-3 text-xs font-semibold text-center text-white rounded-sm whitespace-nowrap bg-sky-800 hover:bg-sky-900'>
               <span className='flex items-center justify-center gap-x-2'>
                 See availability <FaChevronRight size={12} />

@@ -11,10 +11,8 @@ const Home = () => {
       <NavBar />
       <Header />
       <Offers />
-      {/* <Featured /> */}
       <Main />
       <Footer />
-      <div className='mb-[1500px]'></div>
     </div>
   );
 };

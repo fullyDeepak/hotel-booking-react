@@ -12,7 +12,7 @@ import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
 const Header = (props) => {
-  const [checked, setChecked] = useState(false);
+  // const [checked, setChecked] = useState(false);
   const [destination, setDestination] = useState('');
   const navigate = useNavigate();
   const handleSearch = () => {

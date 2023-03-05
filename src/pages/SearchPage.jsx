@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import NavBar from '../components/NavBar';
 import HotelList from '../components/HotelList';
+import Footer from '../components/Footer';
 
 const List = () => {
   const location = useLocation();
@@ -12,7 +13,7 @@ const List = () => {
   const [options, setOptions] = useState(location.state.previewOptions);
   const [date, setDate] = useState(location.state.date);
   const [openDate, setOpenDate] = useState(false);
-  console.log(location);
+  // console.log(location);
   return (
     <>
       <NavBar />
@@ -112,6 +113,7 @@ const List = () => {
           <HotelList />
         </div>
       </div>
+      <Footer className='mt-5' />
     </>
   );
 };

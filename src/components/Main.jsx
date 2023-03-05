@@ -4,7 +4,11 @@ import 'keen-slider/keen-slider.min.css';
 import NextPrevButton from '../components/NextPrevButton';
 
 const Main = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState({
+    property: 0,
+    india: 0,
+    homeGuest: 0,
+  });
   const [loaded, setLoaded] = useState(false);
   const [propertyTypeSlider, propertyTypeSliderRef] = useKeenSlider({
     breakpoints: {
@@ -21,7 +25,10 @@ const Main = () => {
       spacing: 15,
     },
     slideChanged(slider) {
-      setCurrentSlide(slider.track.details.rel);
+      setCurrentSlide({
+        ...currentSlide.property,
+        property: slider.track.details.rel,
+      });
     },
     created() {
       setLoaded(true);
@@ -38,7 +45,10 @@ const Main = () => {
     },
     initial: 0,
     slideChanged(slider) {
-      setCurrentSlide(slider.track.details.rel);
+      setCurrentSlide({
+        ...currentSlide.india,
+        india: slider.track.details.rel,
+      });
     },
     created() {
       setLoaded(true);
@@ -55,12 +65,18 @@ const Main = () => {
     },
     initial: 0,
     slideChanged(slider) {
-      setCurrentSlide(slider.track.details.rel);
+      setCurrentSlide({
+        ...currentSlide.homeGuest,
+        homeGuest: slider.track.details.rel,
+      });
     },
     created() {
       setLoaded(true);
     },
   });
+
+  console.log('Property:', currentSlide.property);
+  console.log('India:', currentSlide.india);
 
   return (
     <div className='flex items-center justify-center mt-8'>
@@ -136,7 +152,7 @@ const Main = () => {
                 onClick={(e) =>
                   e.stopPropagation() || propertyTypeSliderRef.current?.prev()
                 }>
-                <NextPrevButton disabled={currentSlide === 0} />
+                <NextPrevButton disabled={currentSlide.property === 0} />
               </div>
               <div
                 className='absolute -right-4 top-[34%]'
@@ -148,7 +164,7 @@ const Main = () => {
                 <NextPrevButton
                   next={true}
                   disabled={
-                    currentSlide ===
+                    currentSlide.property ===
                     propertyTypeSliderRef.current.track.details.slides.length -
                       propertyTypeSliderRef.current.options.slides.perView
                   }
@@ -215,14 +231,14 @@ const Main = () => {
                 <p className='text-sm text-gray-500'>1,372 Properties</p>
               </div>
             </div>
-            {loaded && propertyTypeSliderRef.current && (
+            {loaded && exploreIndiaSliderRef.current && (
               <>
                 <div
                   className='absolute -left-4 top-[34%]'
                   onClick={(e) =>
-                    e.stopPropagation() || propertyTypeSliderRef.current?.prev()
+                    e.stopPropagation() || exploreIndiaSliderRef.current?.prev()
                   }>
-                  <NextPrevButton disabled={currentSlide === 0} />
+                  <NextPrevButton disabled={currentSlide.india === 0} />
                 </div>
                 <div
                   className='absolute -right-4 top-[34%]'
@@ -234,7 +250,7 @@ const Main = () => {
                   <NextPrevButton
                     next={true}
                     disabled={
-                      currentSlide ===
+                      currentSlide.india ===
                       exploreIndiaSliderRef.current.track.details.slides
                         .length -
                         exploreIndiaSliderRef.current.options.slides.perView
@@ -550,7 +566,7 @@ const Main = () => {
                     e.stopPropagation() ||
                     homeGuestLoveSliderRef.current?.prev()
                   }>
-                  <NextPrevButton disabled={currentSlide === 0} />
+                  <NextPrevButton disabled={currentSlide.homeGuest === 0} />
                 </div>
                 <div
                   className='absolute -right-4 top-[34%]'
@@ -562,7 +578,7 @@ const Main = () => {
                   <NextPrevButton
                     next={true}
                     disabled={
-                      currentSlide ===
+                      currentSlide.india ===
                       homeGuestLoveSliderRef.current.track.details.slides
                         .length -
                         homeGuestLoveSliderRef.current.options.slides.perView
